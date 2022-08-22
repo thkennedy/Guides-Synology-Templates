@@ -7,6 +7,7 @@
 # Start the container, and in your appdata/qbittorrent a wireguard folder will be created where you need to place your wg0.conf file you got from your VPN provider !!!
   qbittorrent:
     container_name: qbittorrent
+    network_mode: service:nordvpnwireguard
     image: cr.hotio.dev/hotio/qbittorrent:latest
     restart: unless-stopped
     logging:
@@ -43,3 +44,5 @@
       - /etc/localtime:/etc/localtime:ro
       - ${DOCKERCONFDIR}/qbittorrent:/config:rw
       - ${DOCKERSTORAGEDIR}/torrents:/data/torrents:rw
+    depends_on:
+      - nordvpnwireguard    

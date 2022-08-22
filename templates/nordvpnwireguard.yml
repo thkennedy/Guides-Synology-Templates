@@ -1,0 +1,20 @@
+# NordVPN Wireguard - https://github.com/bubuntux/nordvpn
+# <sudo mkdir /volume1/docker/appdata/nordvpnwireguard>
+  nordvpnwireguard:
+    image: bubuntux/nordvpn:latest
+    network_mode: bridge
+    container_name: nordvpnwireguard
+    cap_add:
+      - NET_ADMIN    # Required
+    devices:
+      - /dev/net/tun
+    environment:                # Review https://github.com/bubuntux/nordvpn#environment-variables
+      - USER=${NVPN_USERNAME}
+      - PASS=${NVPN_PASSWORD}
+      - CONNECT=US
+      - TECHNOLOGY=NordLynx
+      - NETWORK=192.168.1.0/24  # So it can be accessed within the local network
+    ports:
+      - 8088:8088
+      - 6881:6881
+      - 6881:6881/udp
