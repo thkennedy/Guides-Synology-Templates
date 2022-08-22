@@ -2,7 +2,9 @@
 
 # shellcheck disable=SC2034  # Unused variables left for readability
 
-# MIT License
+# MIT License curl -sL git.io/syno-script > ~/syno-script 
+
+# https://github.com/thkennedy/Guides-Synology-Templates/blob/1970ce2b328bc7f14271de9fb41156618a3f704d/script/trash_syno_installer.sh
 
 # Copyright (c) 2022 Bokkoman
 
@@ -92,7 +94,7 @@ function _multiselect {
 
     # Create our menu my_options associative array
     declare -A my_options
-    eval "$(curl -sL "https://raw.githubusercontent.com/TRaSH-/Guides-Synology-Templates/main/templates/template-file-list.json" | jq -r '.templates | to_entries[]|@sh"my_options[\(.value)]=false"')"
+    eval "$(curl -sL "https://raw.githubusercontent.com/thkennedy/Guides-Synology-Templates/main/templates/template-file-list.json" | jq -r '.templates | to_entries[]|@sh"my_options[\(.value)]=false"')"
 
     # Create some local arrays we need and make sure they're set to empty when the function is used/looped in the script
     local selected_values=()
@@ -439,7 +441,7 @@ EOF
 printf '\n%b\n' " ${utick} docker-compose.yml bootstrapped"
 
 printf '\n%b\n' " ${ulmc} Downloading docker .env"
-if wget -qO "${docker_conf_dir}/appdata/.env" https://raw.githubusercontent.com/TRaSH-/Guides-Synology-Templates/main/docker-compose/.env; then
+if wget -qO "${docker_conf_dir}/appdata/.env" https://raw.githubusercontent.com/thkennedy/Guides-Synology-Templates/main/docker-compose/.env; then
     printf '\n%b\n' " ${utick} Docker .env downloaded."
 else
     printf '\n%b\n' " ${ucross} There was a problem downloading then .env, try again"
@@ -473,7 +475,7 @@ printf '\n%b\n' " ${utick} ${clc}${docker_data_dir}${cend} set."
 # compose template downloader
 #################################################################################################################################################
 get_app_compose() {
-    if wget -qO "${docker_conf_dir}/appdata/${1}.yml" "https://raw.githubusercontent.com/TRaSH-/Guides-Synology-Templates/main/templates/${1,,}.yml"; then
+    if wget -qO "${docker_conf_dir}/appdata/${1}.yml" "https://raw.githubusercontent.com/thkennedy/Guides-Synology-Templates/main/templates/${1,,}.yml"; then
         printf '\n' >> "${docker_conf_dir}/appdata/docker-compose.yml"
 
         [[ "${options}" = 'sabnzbd' ]] && sed -r 's|- 8080:8080$|- 7080:8080|g' -i "${docker_conf_dir}/appdata/${1}.yml"
