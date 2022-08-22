@@ -22,10 +22,10 @@
     # ports:
     #   - ${QBITTORRENT_WEBUI_PORT}:${QBITTORRENT_WEBUI_PORT}
     #   #- ${QBITTORRENT_PRIVOXY_PORT}:${QBITTORRENT_PRIVOXY_PORT}
-    cap_add:
-      - NET_ADMIN
-    devices:
-      - /dev/net/tun:/dev/net/tun
+    # cap_add:
+    #   - NET_ADMIN
+    # devices:
+    #   - /dev/net/tun:/dev/net/tun
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
       - net.ipv6.conf.all.disable_ipv6=1  # Optional, if you want to use ipv6, remove this line. If you keep this line, make sure there is no ipv6 in your wg0.conf.
