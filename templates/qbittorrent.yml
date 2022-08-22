@@ -19,9 +19,9 @@
       - org.hotio.pullio.update=${PULLIO_UPDATE}
       - org.hotio.pullio.notify=${PULLIO_NOTIFY}
       - org.hotio.pullio.discord.webhook=${PULLIO_DISCORD_WEBHOOK}
-    ports:
-      - ${QBITTORRENT_WEBUI_PORT}:${QBITTORRENT_WEBUI_PORT}
-      #- ${QBITTORRENT_PRIVOXY_PORT}:${QBITTORRENT_PRIVOXY_PORT}
+    # ports:
+    #   - ${QBITTORRENT_WEBUI_PORT}:${QBITTORRENT_WEBUI_PORT}
+    #   #- ${QBITTORRENT_PRIVOXY_PORT}:${QBITTORRENT_PRIVOXY_PORT}
     cap_add:
       - NET_ADMIN
     devices:
